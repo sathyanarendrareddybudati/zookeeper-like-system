@@ -11,7 +11,7 @@ import shutil
 import subprocess
 import sys
 import time
-from typing import Dict
+from typing import Dict, Any
 import requests
 
 from config import NODES
@@ -20,6 +20,7 @@ from config import NODES
 class ClusterRunner:
     def __init__(self):
         self.processes: Dict[int, subprocess.Popen] = {}
+        self.log_files: Dict[int, Any] = {}
 
     def clean_data(self):
         if os.path.exists("data"):
@@ -28,9 +29,11 @@ class ClusterRunner:
 
     def start_node(self, node_id: int):
         cmd = [sys.executable, "node_server.py", "--id", str(node_id)]
+        log_f = open(f"data/node_{node_id}.log", "a")
+        self.log_files[node_id] = log_f
         p = subprocess.Popen(
             cmd,
-            stdout=subprocess.PIPE,
+            stdout=log_f,
             stderr=subprocess.STDOUT,
             text=True,
         )
@@ -49,14 +52,22 @@ class ClusterRunner:
         while time.time() - start < timeout:
             alive = 0
             for nid, cfg in NODES.items():
-                if nid in self.processes and self.processes[nid].poll() is None:
+                if nid in self.processes:
+                    ret = self.processes[nid].poll()
+                    if ret is not None:
+                        log_path = f"data/node_{nid}.log"
+                        err_sample = ""
+                        if os.path.exists(log_path):
+                            with open(log_path, "r") as f:
+                                err_sample = "".join(f.readlines()[-15:])
+                        raise RuntimeError(f"Node {nid} exited unexpectedly (code {ret}):\n{err_sample}")
                     try:
                         r = requests.get(f"http://{cfg['host']}:{cfg['port']}/status", timeout=0.5)
                         if r.status_code == 200:
                             alive += 1
                     except Exception:
                         pass
-            if alive == len(self.processes):
+            if alive == len(self.processes) and alive > 0:
                 print(f"--- [Setup] All {alive} nodes are healthy and responding ---")
                 return True
             time.sleep(0.5)
@@ -72,6 +83,12 @@ class ClusterRunner:
             except subprocess.TimeoutExpired:
                 p.kill()
             del self.processes[node_id]
+            if node_id in self.log_files:
+                try:
+                    self.log_files[node_id].close()
+                except Exception:
+                    pass
+                del self.log_files[node_id]
 
     def stop_all(self):
         print("\n--- [Teardown] Stopping all nodes ---")
@@ -82,7 +99,13 @@ class ClusterRunner:
                     p.wait(timeout=1)
                 except subprocess.TimeoutExpired:
                     p.kill()
+        for f in self.log_files.values():
+            try:
+                f.close()
+            except Exception:
+                pass
         self.processes.clear()
+        self.log_files.clear()
 
 
 def run_tests():
