@@ -1,31 +1,31 @@
-15:47:12 [INFO] NodeServer: [Node 1] Listening on raw TCP socket 127.0.0.1:5001
-15:47:12 [INFO] ElectionManager: [Node 1] Started ElectionManager as LEADER (timeout: 3.60s)
-15:47:15 [INFO] NodeServer: [Node 1 (Leader)] Received FORWARD: op=WRITE, val=50, client=Client_Init
-15:47:15 [INFO] LeaderCoordinator: [Node 1 (Leader)] Initiating proposal: epoch=1, seq=1, op=WRITE, value=50
-15:47:15 [INFO] LeaderCoordinator: [Node 1 (Leader)] Received ACK from Node 2 for (epoch=1, seq=1)
-15:47:15 [INFO] LeaderCoordinator: [Node 1 (Leader)] Received ACK from Node 3 for (epoch=1, seq=1)
-15:47:15 [INFO] LeaderCoordinator: [Node 1 (Leader)] Received ACK from Node 4 for (epoch=1, seq=1)
-15:47:15 [INFO] LeaderCoordinator: [Node 1 (Leader)] Received ACK from Node 5 for (epoch=1, seq=1)
-15:47:15 [INFO] LeaderCoordinator: [Node 1 (Leader)] Collected 5/5 ACKs (Quorum needed: 3)
-15:47:15 [INFO] LeaderCoordinator: [Node 1 (Leader)] Quorum reached! COMMITTED locally (epoch=1, seq=1)
-15:47:16 [INFO] NodeServer: [Node 1 (Leader)] Received FORWARD: op=GUESS, val=30, client=Client_Alice
-15:47:16 [INFO] LeaderCoordinator: [Node 1 (Leader)] Recorded guess: {'client_id': 'Client_Alice', 'value': 30}
-15:47:16 [INFO] NodeServer: [Node 1 (Leader)] Received FORWARD: op=GUESS, val=62, client=Client_Bob
-15:47:16 [INFO] LeaderCoordinator: [Node 1 (Leader)] Recorded guess: {'client_id': 'Client_Bob', 'value': 62}
-15:47:16 [INFO] NodeServer: [Node 1 (Leader)] Received FORWARD: op=RESOLVE_ROUND, val=None, client=anon
-15:47:16 [INFO] LeaderCoordinator: [Node 1 (Leader)] Round evaluation: Target was 50. Winner: Client_Bob with guess 62 (diff: 12). All guesses: [{'client_id': 'Client_Alice', 'value': 30}, {'client_id': 'Client_Bob', 'value': 62}]
-15:47:16 [INFO] LeaderCoordinator: [Node 1 (Leader)] Initiating proposal: epoch=1, seq=2, op=GUESS, value=62
-15:47:16 [INFO] LeaderCoordinator: [Node 1 (Leader)] Received ACK from Node 2 for (epoch=1, seq=2)
-15:47:16 [INFO] LeaderCoordinator: [Node 1 (Leader)] Received ACK from Node 4 for (epoch=1, seq=2)
-15:47:16 [INFO] LeaderCoordinator: [Node 1 (Leader)] Received ACK from Node 3 for (epoch=1, seq=2)
-15:47:16 [INFO] LeaderCoordinator: [Node 1 (Leader)] Received ACK from Node 5 for (epoch=1, seq=2)
-15:47:16 [INFO] LeaderCoordinator: [Node 1 (Leader)] Collected 5/5 ACKs (Quorum needed: 3)
-15:47:16 [INFO] LeaderCoordinator: [Node 1 (Leader)] Quorum reached! COMMITTED locally (epoch=1, seq=2)
-15:47:16 [INFO] NodeServer: [Node 1] Received signal 15, terminating...
-15:47:16 [INFO] NodeServer: [Node 1] Shutting down NodeServer...
-15:47:20 [INFO] NodeServer: [Node 1] Listening on raw TCP socket 127.0.0.1:5001
-15:47:20 [INFO] ElectionManager: [Node 1] Started ElectionManager as LEADER (timeout: 2.62s)
-15:47:21 [INFO] ElectionManager: [Node 1] Acknowledging leader Node 2 for epoch 2 (previous role: LEADER, previous epoch: 1)
-15:47:21 [INFO] ElectionManager: [Node 1] Synchronised 3 entries from Leader Node 2
-15:47:23 [INFO] NodeServer: [Node 1] Received signal 15, terminating...
-15:47:23 [INFO] NodeServer: [Node 1] Shutting down NodeServer...
+16:07:10 [INFO] NodeServer: [Node 1] Listening on raw TCP socket 127.0.0.1:5001
+16:07:10 [INFO] ElectionManager: [Node 1] Started ElectionManager as LEADER (timeout: 2.60s)
+16:07:13 [INFO] NodeServer: [Node 1 (Leader)] Received FORWARD: op=WRITE, val=50, client=Client_Init
+16:07:13 [INFO] LeaderCoordinator: [Node 1 (Leader)] Initiating proposal: epoch=1, seq=1, op=WRITE, value=50
+16:07:13 [INFO] LeaderCoordinator: [Node 1 (Leader)] Received ACK from Node 5 for (epoch=1, seq=1)
+16:07:13 [INFO] LeaderCoordinator: [Node 1 (Leader)] Received ACK from Node 2 for (epoch=1, seq=1)
+16:07:13 [INFO] LeaderCoordinator: [Node 1 (Leader)] Received ACK from Node 4 for (epoch=1, seq=1)
+16:07:13 [INFO] LeaderCoordinator: [Node 1 (Leader)] Received ACK from Node 3 for (epoch=1, seq=1)
+16:07:13 [INFO] LeaderCoordinator: [Node 1 (Leader)] Collected 5/5 ACKs (Quorum needed: 3)
+16:07:13 [INFO] LeaderCoordinator: [Node 1 (Leader)] Quorum reached! COMMITTED locally (epoch=1, seq=1)
+16:07:14 [INFO] NodeServer: [Node 1 (Leader)] Received FORWARD: op=GUESS, val=30, client=Client_Alice
+16:07:14 [INFO] LeaderCoordinator: [Node 1 (Leader)] Recorded guess: {'client_id': 'Client_Alice', 'value': 30}
+16:07:14 [INFO] NodeServer: [Node 1 (Leader)] Received FORWARD: op=GUESS, val=62, client=Client_Bob
+16:07:14 [INFO] LeaderCoordinator: [Node 1 (Leader)] Recorded guess: {'client_id': 'Client_Bob', 'value': 62}
+16:07:14 [INFO] NodeServer: [Node 1 (Leader)] Received FORWARD: op=RESOLVE_ROUND, val=None, client=anon
+16:07:14 [INFO] LeaderCoordinator: [Node 1 (Leader)] Round evaluation: Target was 50. Winner: Client_Bob with guess 62 (diff: 12). All guesses: [{'client_id': 'Client_Alice', 'value': 30}, {'client_id': 'Client_Bob', 'value': 62}]
+16:07:14 [INFO] LeaderCoordinator: [Node 1 (Leader)] Initiating proposal: epoch=1, seq=2, op=GUESS, value=62
+16:07:14 [INFO] LeaderCoordinator: [Node 1 (Leader)] Received ACK from Node 4 for (epoch=1, seq=2)
+16:07:14 [INFO] LeaderCoordinator: [Node 1 (Leader)] Received ACK from Node 2 for (epoch=1, seq=2)
+16:07:14 [INFO] LeaderCoordinator: [Node 1 (Leader)] Received ACK from Node 3 for (epoch=1, seq=2)
+16:07:14 [INFO] LeaderCoordinator: [Node 1 (Leader)] Received ACK from Node 5 for (epoch=1, seq=2)
+16:07:14 [INFO] LeaderCoordinator: [Node 1 (Leader)] Collected 5/5 ACKs (Quorum needed: 3)
+16:07:14 [INFO] LeaderCoordinator: [Node 1 (Leader)] Quorum reached! COMMITTED locally (epoch=1, seq=2)
+16:07:14 [INFO] NodeServer: [Node 1] Received signal 15, terminating...
+16:07:14 [INFO] NodeServer: [Node 1] Shutting down NodeServer...
+16:07:18 [INFO] NodeServer: [Node 1] Listening on raw TCP socket 127.0.0.1:5001
+16:07:18 [INFO] ElectionManager: [Node 1] Started ElectionManager as LEADER (timeout: 3.69s)
+16:07:19 [INFO] ElectionManager: [Node 1] Acknowledging leader Node 3 for epoch 2 (previous role: LEADER, previous epoch: 1)
+16:07:19 [INFO] ElectionManager: [Node 1] Synchronised 3 entries from Leader Node 3
+16:07:21 [INFO] NodeServer: [Node 1] Received signal 15, terminating...
+16:07:21 [INFO] NodeServer: [Node 1] Shutting down NodeServer...

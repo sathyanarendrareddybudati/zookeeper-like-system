@@ -1,17 +1,19 @@
-15:47:13 [INFO] NodeServer: [Node 4] Listening on raw TCP socket 127.0.0.1:5004
-15:47:13 [INFO] ElectionManager: [Node 4] Started ElectionManager as FOLLOWER (timeout: 3.44s)
-15:47:15 [INFO] NodeServer: [Node 4] Received PROPOSE from Node 1: epoch=1, seq=1, op=WRITE, value=50
-15:47:15 [INFO] NodeServer: [Node 4] Received COMMIT: epoch=1, seq=1
-15:47:16 [INFO] NodeServer: [Node 4] Received PROPOSE from Node 1: epoch=1, seq=2, op=GUESS, value=62
-15:47:16 [INFO] NodeServer: [Node 4] Received COMMIT: epoch=1, seq=2
-15:47:19 [INFO] ElectionManager: [Node 4] Received ELECTION from Node 5 with (epoch=1, seq=2). My log: (epoch=1, seq=2)
-15:47:19 [INFO] ElectionManager: [Node 4] Voted NO for candidate Node 5 (my state is higher)
-15:47:19 [INFO] ElectionManager: [Node 4] Received ELECTION from Node 2 with (epoch=1, seq=2). My log: (epoch=1, seq=2)
-15:47:19 [INFO] ElectionManager: [Node 4] Voted YES for candidate Node 2
-15:47:19 [INFO] ElectionManager: [Node 4] Acknowledging leader Node 2 for epoch 2 (previous role: FOLLOWER, previous epoch: 1)
-15:47:19 [INFO] ElectionManager: [Node 4] Synchronised 2 entries from Leader Node 2
-15:47:20 [INFO] NodeServer: [Node 4] Received PROPOSE from Node 2: epoch=2, seq=1, op=WRITE, value=85
-15:47:20 [INFO] NodeServer: [Node 4] Received COMMIT: epoch=2, seq=1
-15:47:20 [WARNING] ElectionManager: [Node 4] Rejected HEARTBEAT from stale leader Node 1 (their epoch: 1, my epoch: 2)
-15:47:23 [INFO] NodeServer: [Node 4] Received signal 15, terminating...
-15:47:23 [INFO] NodeServer: [Node 4] Shutting down NodeServer...
+16:07:11 [INFO] NodeServer: [Node 4] Listening on raw TCP socket 127.0.0.1:5004
+16:07:11 [INFO] ElectionManager: [Node 4] Started ElectionManager as FOLLOWER (timeout: 3.31s)
+16:07:13 [INFO] NodeServer: [Node 4] Received PROPOSE from Node 1: epoch=1, seq=1, op=WRITE, value=50
+16:07:13 [INFO] NodeServer: [Node 4] Received COMMIT: epoch=1, seq=1
+16:07:14 [INFO] NodeServer: [Node 4] Received PROPOSE from Node 1: epoch=1, seq=2, op=GUESS, value=62
+16:07:14 [INFO] NodeServer: [Node 4] Received COMMIT: epoch=1, seq=2
+16:07:17 [WARNING] ElectionManager: [Node 4] Heartbeat timeout expired (2.95s > 2.90s). Starting election!
+16:07:17 [INFO] ElectionManager: [Node 4] Broadcast ELECTION: epoch=1, seq=2, cand_id=4
+16:07:17 [INFO] ElectionManager: [Node 4] Election result: received 2/5 votes (Quorum: 3)
+16:07:17 [INFO] ElectionManager: [Node 4] Did not achieve quorum. Reverting to follower.
+16:07:18 [INFO] ElectionManager: [Node 4] Received ELECTION from Node 3 with (epoch=1, seq=2). My log: (epoch=1, seq=2)
+16:07:18 [INFO] ElectionManager: [Node 4] Voted YES for candidate Node 3
+16:07:18 [INFO] ElectionManager: [Node 4] Acknowledging leader Node 3 for epoch 2 (previous role: FOLLOWER, previous epoch: 1)
+16:07:18 [INFO] ElectionManager: [Node 4] Synchronised 2 entries from Leader Node 3
+16:07:18 [INFO] NodeServer: [Node 4] Received PROPOSE from Node 3: epoch=2, seq=1, op=WRITE, value=85
+16:07:18 [INFO] NodeServer: [Node 4] Received COMMIT: epoch=2, seq=1
+16:07:18 [WARNING] ElectionManager: [Node 4] Rejected HEARTBEAT from stale leader Node 1 (their epoch: 1, my epoch: 2)
+16:07:21 [INFO] NodeServer: [Node 4] Received signal 15, terminating...
+16:07:21 [INFO] NodeServer: [Node 4] Shutting down NodeServer...
