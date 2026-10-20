@@ -1,5 +1,6 @@
-fastapi>=0.100.0
-uvicorn>=0.23.0
-httpx>=0.25.0
-requests>=2.31.0
-pydantic>=2.0.0
+# Zero external dependencies required!
+# Implemented using Python 3 Standard Library:
+# - socket (Raw TCP Socket RPC with line-delimited JSON framing)
+# - threading / concurrent.futures (ThreadPoolExecutor for concurrent connections & consensus)
+# - sqlite3 (Persistent local transaction log store)
+# - json, time, random, argparse, logging, signal

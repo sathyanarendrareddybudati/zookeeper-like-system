@@ -1,7 +1,8 @@
-"""Process manager to launch and control the 5-node ZooKeeper cluster.
+"""Process manager to launch and control the 5-node ZooKeeper cluster over raw TCP sockets.
 
 Features:
-- Launches Node 1 to Node 5 on ports 5001 to 5005.
+- Launches Node 1 to Node 5 on localhost ports 5001 to 5005.
+- Uses Python standard library sockets and threading.
 - Supports clean startup by optionally wiping previous SQLite data.
 - Handles clean shutdown (SIGINT / Ctrl+C) of all child processes.
 """
@@ -30,7 +31,7 @@ def start_node(node_id: int, log_files: dict) -> subprocess.Popen:
     log_f = open(log_path, "a")
     log_files[node_id] = log_f
     cmd = [sys.executable, "node_server.py", "--id", str(node_id)]
-    print(f"🚀 Launching Node {node_id} on http://{cfg['host']}:{cfg['port']} (logs: {log_path})...")
+    print(f"🚀 Launching Node {node_id} on TCP {cfg['host']}:{cfg['port']} (logs: {log_path})...")
     proc = subprocess.Popen(
         cmd,
         stdout=log_f,
@@ -41,7 +42,7 @@ def start_node(node_id: int, log_files: dict) -> subprocess.Popen:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Manage ZooKeeper 5-node cluster")
+    parser = argparse.ArgumentParser(description="Manage ZooKeeper 5-node cluster (TCP sockets)")
     parser.add_argument("--clean", action="store_true", help="Clean SQLite databases before launch")
     args = parser.parse_args()
 
@@ -80,13 +81,13 @@ def main():
         time.sleep(0.3)  # Brief stagger for clean port binding
 
     print("\n" + "=" * 65)
-    print("🌟 5-Node Cluster Running Successfully!")
-    print("   Node 1 (Initial Leader): http://127.0.0.1:5001")
-    print("   Node 2 (Follower)      : http://127.0.0.1:5002")
-    print("   Node 3 (Follower)      : http://127.0.0.1:5003")
-    print("   Node 4 (Follower)      : http://127.0.0.1:5004")
-    print("   Node 5 (Follower)      : http://127.0.0.1:5005")
-    print("   Dashboard & Swagger API: http://127.0.0.1:5001/ or /docs")
+    print("🌟 5-Node ZooKeeper Cluster Running (Raw TCP Sockets)!")
+    print("   Node 1 (Initial Leader): 127.0.0.1:5001")
+    print("   Node 2 (Follower)      : 127.0.0.1:5002")
+    print("   Node 3 (Follower)      : 127.0.0.1:5003")
+    print("   Node 4 (Follower)      : 127.0.0.1:5004")
+    print("   Node 5 (Follower)      : 127.0.0.1:5005")
+    print("   Communicate with any node via: python client.py --interactive")
     print("   Press Ctrl+C to terminate the cluster.")
     print("=" * 65 + "\n")
 
